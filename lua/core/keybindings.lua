@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 
 local map = vim.api.nvim_set_keymap
 -- 复用 opt 参数
-local opt = {noremap = true, silent = true }
+local opt = { noremap = true, silent = true }
 
 -- 取消 s 默认功能
 map("n", "s", "", opt)
@@ -49,4 +49,36 @@ map("n", "<C-k>", "4k", opt)
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
 
+--快速粘贴到系统剪贴板
+map("v", "<leader>y", [["+y]], opt)
 
+--回到上次编辑的位置
+map("n", "<leader>o", "<C-o>", opt)
+
+--粘贴到下面一行
+map("n", "<leader>p", "o<Esc>p", opt)
+-- 粘贴到上面一行
+map("n", "<leader>P", "O<Esc>p", opt)
+
+--回到本行的第一个字符
+map("n", "H", "^", opt)
+--回到本行的最后一个字符
+map("n", "L", "g_", opt)
+
+-- 回到本句的第一个字符
+map("n", "M", "0", opt)
+-- 回到本句的最后一个字符
+map("n", "N", "$", opt)
+
+--copilot通过<leader><Tab>接受建议
+map("i", "<C-j>", 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
+
+--vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+--  expr = true,
+--  replace_keycodes = false
+--})
+--vim.g.copilot_no_tab_map = true

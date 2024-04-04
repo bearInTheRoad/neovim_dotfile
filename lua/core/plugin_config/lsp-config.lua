@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "tsserver", "pyright", "sqlls" }
+  ensure_installed = { "lua_ls", "tsserver", "pyright", "sqlls", "tailwindcss"}
 })
 
 local lspconfig = require('lspconfig')
@@ -28,11 +28,18 @@ require("lspconfig").lua_ls.setup {
   }
 }
 
-require("lspconfig").pyright.setup({})
-require("lspconfig").lua_ls.setup({})
-require("lspconfig").tsserver.setup({})
-require("lspconfig").sqlls.setup({})
-require("lspconfig").tailwindcss.setup({})
+require("lspconfig").pyright.setup({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
+require("lspconfig").tsserver.setup({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
+require("lspconfig").sqlls.setup({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
+require("lspconfig").tailwindcss.setup({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
