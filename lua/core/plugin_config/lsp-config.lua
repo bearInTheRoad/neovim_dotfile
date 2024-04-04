@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "tsserver", "pyright", "sqlls", "tailwindcss"}
+  ensure_installed = { "lua_ls", "tsserver", "pyright", "sqlls", "tailwindcss" }
 })
 
 local lspconfig = require('lspconfig')
@@ -66,5 +66,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>f', function()
       vim.lsp.buf.format { async = true }
     end, opts)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, bufopts)
   end,
 })
